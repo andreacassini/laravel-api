@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Post;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', function () {
-    $posts = Post::all();
-    return response()->json([
-        'success' => 'true',
-        'results' => $posts
-    ]);
-});
+
+Route::get('/posts', [PostController::class, 'index']);
