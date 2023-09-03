@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('type', 'technologies')->paginate(2); // EAGER LOADING CON PAGINAZIONE
         return response()->json([
             'success' => 'true',
             'results' => $posts
